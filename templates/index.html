@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChaosLite | Application Failure Simulator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>⚡ ChaosLite</h2>
+    <p class="subtitle">Failure Simulator</p>
+
+    <div class="nav active">▦ Dashboard</div>
+    <div class="nav">◉ Experiments</div>
+    <div class="nav">▤ Monitoring</div>
+
+    <div class="sidebar-bottom">
+        <p>DEVOPS PROJECT</p>
+        <small>Application Resilience Lab</small>
+    </div>
+</div>
+
+<main class="main">
+
+    <header>
+        <div>
+            <h1>Application Dashboard</h1>
+            <p>Monitor, simulate and recover application failures.</p>
+        </div>
+
+        <div class="status-pill" id="status">
+            ● HEALTHY
+        </div>
+    </header>
+
+    <section class="welcome">
+        <div>
+            <h2>Chaos Engineering Control Center</h2>
+            <p>Run controlled failure experiments and analyze application resilience.</p>
+        </div>
+        <span>⚡ CHAOS MODE</span>
+    </section>
+
+    <section class="metrics">
+
+        <div class="metric-card">
+            <p>CPU USAGE</p>
+            <h2 id="cpu">24%</h2>
+            <span>Processor utilization</span>
+        </div>
+
+        <div class="metric-card">
+            <p>MEMORY USAGE</p>
+            <h2 id="memory">38%</h2>
+            <span>Memory utilization</span>
+        </div>
+
+        <div class="metric-card">
+            <p>NETWORK LATENCY</p>
+            <h2 id="latency">45 ms</h2>
+            <span>Response delay</span>
+        </div>
+
+        <div class="metric-card">
+            <p>ERROR COUNT</p>
+            <h2 id="errors">0</h2>
+            <span>Simulated errors</span>
+        </div>
+
+    </section>
+
+    <section class="content-grid">
+
+        <div class="panel">
+            <h2>Failure Injection</h2>
+            <p class="description">Select a failure scenario to simulate.</p>
+
+            <div class="failure-grid">
+                <button onclick="simulate('cpu')">
+                    <strong>🔥 CPU Overload</strong>
+                    <small>Simulate high CPU utilization</small>
+                </button>
+
+                <button onclick="simulate('memory')">
+                    <strong>💾 Memory Pressure</strong>
+                    <small>Simulate memory exhaustion pressure</small>
+                </button>
+
+                <button onclick="simulate('crash')">
+                    <strong>💥 Application Crash</strong>
+                    <small>Simulate service downtime</small>
+                </button>
+
+                <button onclick="simulate('network')">
+                    <strong>🌐 Network Delay</strong>
+                    <small>Simulate high network latency</small>
+                </button>
+            </div>
+
+            <button class="recover-btn" onclick="recoverApp()">
+                ↻ Recover Application
+            </button>
+
+            <p id="message">System is operating normally.</p>
+        </div>
+
+        <div class="panel">
+            <h2>System Health</h2>
+            <p class="description">Current application condition</p>
+
+            <div class="health-circle" id="healthCircle">
+                <span id="healthText">100%</span>
+            </div>
+
+            <h3 id="healthLabel">Excellent</h3>
+            <p class="description" id="activeFailure">
+                No active failures
+            </p>
+        </div>
+
+    </section>
+
+    <section class="content-grid">
+
+        <div class="panel">
+            <h2>Resource Monitoring</h2>
+            <canvas id="resourceChart"></canvas>
+        </div>
+
+        <div class="panel">
+            <h2>Experiment History</h2>
+            <div id="history">
+                <p class="description">Waiting for experiments...</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        ChaosLite | Application Failure Simulator | DevOps Project
+    </footer>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
